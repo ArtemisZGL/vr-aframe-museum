@@ -4,14 +4,9 @@
         <script src="src/js/aframe.0.7.0.min.js"></script>
         <script src="src/js/aframe-extras.min.js"></script>
 
-        <script src="src/js/lzma.js"></script>
-        <script src="src/js/ctm.js"></script>
-        <script src="src/js/CTMLoader.js"></script>
-
         <!--传送控件，用于在手机上对相机位置进行帧传送-->
         <script src="src/js/aframe-teleport-controls.min.js"></script>
-
-        <script src="src/js/ctm_component.js"></script>
+        
         <script src="src/js/mobile_component.js"></script>
     </head>
 </html>
@@ -22,25 +17,22 @@
         <!--这里的mobile是我们自己定义的组件，用于在手机上控制位置的移动-->
         <a-entity mobile></a-entity>
 
-        <!--添加光照，平行光和ambient环境光-->
-        <a-entity light="type: directional; color: #FFF; intensity: 0.5" position="2 20 0"></a-entity>
-        <a-entity light="type: ambient; color: #FFF"></a-entity>
+        
   
         <!--定义一些资源，像模型，图片，声音-->
         <a-assets>
+
+            <a-sound src="assets/audio/museum.ogg"
+                     autoplay="true"
+                     loop="true"
+                     position="0 1 0"></a-sound>
+
             <!--mixin是相当于一个其它primitive可以吸收的属性把-->
             <a-mixin id="checkpoint"></a-mixin>
             <a-mixin id="checkpoint-hovered" color="#FFC0CB"></a-mixin>
 
             <!--天空盒图片-->
             <img id="sky-texture" src="assets/textures/sky.jpg">
-
-            <!--背景音乐-->
-            <a-sound src="assets/audio/fire.ogg"
-                     audioplay="true"
-                     loop="true"
-                     position="1 1 0"></a-sound>
-
 
             <!-- acropolis -->
             <a-asset-item id="acropolis-obj" src="assets/models/acropolis.obj"></a-asset-item>
@@ -90,13 +82,22 @@
             <a-asset-item id="sculture8" src="assets/models/h1/scene.gltf"></a-asset-item>
             <a-asset-item id="sculture9" src="assets/models/h3/scene.gltf"></a-asset-item>
             <a-asset-item id="sculture10" src="assets/models/h4/scene.gltf"></a-asset-item>
+
+            
             
         </a-assets>
 
         <!-- <a-camera wasd-controls-enabled='true' position='-16 0 16'></a-camera> -->
         <a-sky material="src: #sky-texture"></a-sky>
+
+        <a-entity light="type: ambient; intensity: 0.4;"></a-entity>
+        <a-entity light="type: point;
+                        castShadow: true;
+                        intensity: 0.55;"
+                    position="0 4 0"></a-entity>
         
-        <a-entity gltf-model="#room" scale="0.02 0.02 0.02" position="0 -0.5 0"></a-entity>
+        <a-entity gltf-model="#room" scale="0.02 0.02 0.02" position="0 -0.5 0" shadow="cast: true"></a-entity>
+        
         
         <!--雕像底座-->
         <a-entity gltf-model="#pedestal" scale="0.1 0.1 0.1" position="-10.5 -0.5 -0.5"></a-entity>
@@ -112,7 +113,6 @@
         <a-entity gltf-model="#sculture5" scale="0.2 0.2 0.2" position="-5 -0.5 9.5"></a-entity>
         <a-entity gltf-model="#sculture2" scale="0.02 0.02 0.02" position="-1 1 8.5" ></a-entity>
         <a-entity gltf-model="#sculture6" scale="1.4 1.4 1.4" position="5.5 -0.5 3.5" ></a-entity>
-
 
         <!--鼎-->
         <a-entity gltf-model="#sculture7" scale="1 1 1" position="-7 0.5 0" rotation="0 -90 0"></a-entity>
